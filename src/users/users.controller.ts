@@ -1,5 +1,6 @@
-import { Body, Controller, Post, Request } from '@nestjs/common';
+import { Body, Controller, Post, UseGuards, Request } from '@nestjs/common';
 import * as bcrypt from 'bcrypt';
+import { LocalAuthGuard } from 'src/auth/local-auth.guard';
 import { UsersService } from './users.service';
 @Controller('users')
 export class UsersController {
@@ -20,6 +21,7 @@ export class UsersController {
     };
   }
   //Post / Login
+  @UseGuards(LocalAuthGuard)
   @Post('/login')
   login(@Request() req): any {
     return { User: req.user, msg: 'User logged in' };
