@@ -1,6 +1,6 @@
-import { Body, Controller, Post } from '@nestjs/common';
-import { UsersService } from './users.service';
+import { Body, Controller, Post, Request } from '@nestjs/common';
 import * as bcrypt from 'bcrypt';
+import { UsersService } from './users.service';
 @Controller('users')
 export class UsersController {
   constructor(private readonly usersService: UsersService) {}
@@ -18,5 +18,10 @@ export class UsersController {
       userId: result.id,
       userName: result.username,
     };
+  }
+  //Post / Login
+  @Post('/login')
+  login(@Request() req): any {
+    return { User: req.user, msg: 'User logged in' };
   }
 }
