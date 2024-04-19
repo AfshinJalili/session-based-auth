@@ -40,4 +40,10 @@ export class UsersController {
   getHello(@Request() req): string {
     return req.user;
   }
+  //Get / logout
+  @Get('/logout')
+  logout(@Request() req): any {
+    req.session.destroy();
+    return { msg: 'The user session has ended' };
+  }
 }
