@@ -1,7 +1,15 @@
-import { Body, Controller, Post, UseGuards, Request } from '@nestjs/common';
+import {
+  Body,
+  Controller,
+  Get,
+  Post,
+  UseGuards,
+  Request,
+} from '@nestjs/common';
 import * as bcrypt from 'bcrypt';
 import { LocalAuthGuard } from 'src/auth/local-auth.guard';
 import { UsersService } from './users.service';
+import { AuthenticatedGuard } from 'src/auth/authenticated.guard';
 @Controller('users')
 export class UsersController {
   constructor(private readonly usersService: UsersService) {}
@@ -25,5 +33,11 @@ export class UsersController {
   @Post('/login')
   login(@Request() req): any {
     return { User: req.user, msg: 'User logged in' };
+  }
+  // Get / protected
+  @UseGuards(AuthenticatedGuard)
+  @Get('/protected')
+  getHello(@Request() req): string {
+    return req.user;
   }
 }
