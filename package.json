@@ -1,10 +1,10 @@
 {
-  "name": "project",
+  "name": "session-based-authentication",
   "version": "0.0.1",
-  "description": "",
-  "author": "",
+  "description": "Implementing Session-Based Authentication in NestJS with MongoDB",
+  "author": "Afshin Jalili <afshnjalili@gmail.com>",
   "private": true,
-  "license": "UNLICENSED",
+  "license": "MIT",
   "scripts": {
     "prebuild": "rimraf dist",
     "build": "nest build",
